@@ -1,20 +1,59 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package GraphFramework;
 
-/**
- *
- * @author asil
+import java.util.LinkedList;
+import java.util.List;
+
+/*
+ *  @authors Asil, Qamar, Aroub,Khalida
+ * B9A
+ * CPCS-324
+ * Project Code
+ * 4th June 2023
  */
 public class Vertex {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    private String label;
+    private Boolean isVisited;
+    private List<Edge> adjList;
+
+    public Vertex() {
+        adjList = new LinkedList<>();
     }
-    
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public Boolean getIsVisited() {
+        return isVisited;
+    }
+
+    public void setIsVisited(Boolean isVisited) {
+        this.isVisited = isVisited;
+    }
+
+    public List<Edge> getAdjList() {
+        return adjList;
+    }
+
+    public void setAdjList(List<Edge> adjList) {
+        this.adjList = adjList;
+    }
+
+    public Vertex(String label) { //creating new vertex
+        this.label = label; //value of vertex
+        this.isVisited = false; //vertex not visited yet 
+        adjList = new LinkedList<>(); //create new linkedlist for each vertex (for its edges)
+    }
+
+    public void displayInfo() {
+        System.out.print(label);
+    }
+
 }
+
+

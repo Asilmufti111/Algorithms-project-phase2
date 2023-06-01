@@ -72,10 +72,8 @@ public class Edge implements Comparable<Edge> {
     }
 
     public void displayInfo() {
-        System.out.print("Office No. " + source.getLabel());
-        System.out.print(" - ");
-        System.out.print("Office No. " + target.getLabel());
-        System.out.print(" : line length: " + weight + " ");
+        System.out.print(weight);
+
     }
 
 }

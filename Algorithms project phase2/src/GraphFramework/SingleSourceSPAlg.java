@@ -1,5 +1,6 @@
-
 package GraphFramework;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -16,15 +17,17 @@ public class SingleSourceSPAlg {
         Vertex source;
         boolean[] visitedVertex;
         int[] distance;
+        ArrayList <Vertex> path = new ArrayList();
+
                 
   public  void dijkstra(Graph graph,Vertex source) {
-    int count = graph.size();
+    int count = graph.verticesNo;
     visitedVertex = new boolean[count];
     distance = new int[count];
     for (int i = 0; i < count; i++) {
       visitedVertex[i] = false;
       distance[i] = Integer.MAX_VALUE;
-    } // Initialize all verticies to infinity
+    } // Initialize all verticies to infinity and not visited
 
     distance[0] = 0; // Initialize distance from first vertices (source) to itself to 0
     for (int i = 0; i < count; i++) {
@@ -33,11 +36,12 @@ public class SingleSourceSPAlg {
       visitedVertex[u] = true;
       // Update all the neighbouring vertex distances
       for (int v = 0; v < count; v++) { 
-          for(int q =0; q<graph.get(v).getAdjList().size(); i++ ){// moves through every element in adjacency list
-              int dis = graph.get(v).getAdjList().get(q).getWeight(); // get weight of current edge in adjancency matrix
+          for(int q =0; q<graph.vertices.get(v).getAdjList().size(); i++ ){// moves through every element in adjacency list
+              int dis = graph.vertices.get(v).getAdjList().get(q).getWeight(); // get weight of current edge in adjancency matrix
                  if(dis>0)
                if (!visitedVertex[v] && (distance[u] + dis < distance[v])) { // if distance ot be added is less than distance traveled so far
                     distance[v] = distance[u] + dis; // update distance traveled so far
+                    path.add(graph.vertices.get(v).getAdjList().get(q).getTarget());
               }
         
         }
@@ -48,6 +52,10 @@ public class SingleSourceSPAlg {
     }
 
   }
+
+    public ArrayList<Vertex> getPath() {
+        return path;
+    }
 
   // Finding the minimum distance
   private static int findMinDistance(int[] distance, boolean[] visitedVertex) {

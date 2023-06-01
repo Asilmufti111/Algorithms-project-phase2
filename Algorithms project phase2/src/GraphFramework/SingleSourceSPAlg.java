@@ -16,10 +16,12 @@ public class SingleSourceSPAlg {
         Vertex source;
         boolean[] visitedVertex;
         int[] distance;
-        ArrayList <Vertex> path = new ArrayList();
+        ArrayList <Vertex> path ;
 
                 
   public  void computeDijkstraAlg(Graph graph,Vertex source) {
+      
+      path = new ArrayList();
       
       String printedPath = "loc. "+source.getLabel()+": city ";
       
@@ -37,7 +39,7 @@ public class SingleSourceSPAlg {
         distance[i] = Integer.MAX_VALUE;
     } // Initialize all verticies to infinity and not visited
 
-    distance[0] = 0; // Initialize distance from first vertices (source) to itself to 0
+    distance[Integer.parseInt(source.getLabel())] = 0; // Initialize distance from first vertices (source) to itself to 0
    
     for (int i = 0; i < count; i++) {
       // Update the distance between neighbouring vertex and source vertex
@@ -49,7 +51,7 @@ public class SingleSourceSPAlg {
       
       for (int v = 0; v < count; v++) { 
           
-          for(int q =0; q<graph.vertices.get(v).getAdjList().size(); i++ ){// moves through every element in adjacency list
+          for(int q =0; q<graph.vertices.get(v).getAdjList().size(); q++ ){// moves through every element in adjacency list
               
               int dis = graph.vertices.get(v).getAdjList().get(q).getWeight(); // get weight of current edge in adjancency matrix
                  
@@ -61,18 +63,18 @@ public class SingleSourceSPAlg {
                                       
                       path.add(graph.vertices.get(v).getAdjList().get(q).getTarget());                   
                    
-                      printedPath+=graph.vertices.get(v).getAdjList().get(q).getWeight() +"– loc."+graph.vertices.get(v).getAdjList().get(q).getTarget()+": city ";                   
+                      printedPath+=graph.vertices.get(v).getAdjList().get(q).getWeight() +"-loc."+graph.vertices.get(v).getAdjList().get(q).getTarget().getLabel()+": city";                   
                    
                       routeLength+=graph.vertices.get(v).getAdjList().get(q).getWeight();                   
                    
-                      System.out.print(printedPath+"---route length: "+ routeLength);
+                      System.out.println(printedPath+"---route length: "+ routeLength);
               }
         
         }
       }
     }
     for (int i = 0; i < distance.length; i++) { // formatted print statement
-      System.out.println(String.format("Distance from %s to %s is %s", source, i, distance[i]));
+      System.out.println(String.format("Distance from %s to location %s is %s", source.getLabel(), i, distance[i]));
     }
 
   }

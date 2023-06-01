@@ -1,13 +1,30 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package AirFreightApp;
 
-/**
- *
- * @author asil
+import GraphFramework.Vertex;
+
+
+/*
+ *  @authors Asil, Qamar, Aroub,Khalida
+ * B9A
+ * CPCS-324
+ * Project Code
+ * 18th may. 2023
  */
-public class Location {
-    
+public class Location extends Vertex {
+
+    public Location(String label) {
+        super(label);
+    }
+
+    // Methods
+    @Override
+    public void setLabel(String label) {
+        super.setLabel(label);
+    }
+
+    @Override
+    public void displayInfo() {
+        System.out.println(super.getLabel() + ": city" + "....");
+    }
+
 }

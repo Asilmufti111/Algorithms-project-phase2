@@ -13,15 +13,14 @@ import java.util.ArrayList;
 // Dijkstra's Algorithm 
 
 public class SingleSourceSPAlg {
-        Graph graph;
+         Graph graph;
         Vertex source;
         boolean[] visitedVertex;
-        int[] distance;
         ArrayList <Vertex> path = new ArrayList();
-
+        int[] distance;
                 
   public  void dijkstra(Graph graph,Vertex source) {
-    int count = graph.verticesNo;
+    int count = graph.size();
     visitedVertex = new boolean[count];
     distance = new int[count];
     for (int i = 0; i < count; i++) {
@@ -36,12 +35,12 @@ public class SingleSourceSPAlg {
       visitedVertex[u] = true;
       // Update all the neighbouring vertex distances
       for (int v = 0; v < count; v++) { 
-          for(int q =0; q<graph.vertices.get(v).getAdjList().size(); i++ ){// moves through every element in adjacency list
-              int dis = graph.vertices.get(v).getAdjList().get(q).getWeight(); // get weight of current edge in adjancency matrix
+          for(int q =0; q<graph.get(v).getAdjList().size(); i++ ){// moves through every element in adjacency list
+              int dis = graph.get(v).getAdjList().get(q).getWeight(); // get weight of current edge in adjancency matrix
                  if(dis>0)
                if (!visitedVertex[v] && (distance[u] + dis < distance[v])) { // if distance ot be added is less than distance traveled so far
                     distance[v] = distance[u] + dis; // update distance traveled so far
-                    path.add(graph.vertices.get(v).getAdjList().get(q).getTarget());
+                    path.add(graph.get(v).getAdjList().get(q).getTarget());
               }
         
         }

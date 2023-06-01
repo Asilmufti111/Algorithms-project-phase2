@@ -2,17 +2,16 @@ package GraphFramework;
 
 import java.util.ArrayList;
 
-/**
- *
+/*
  *  @authors Asil, Qamar, Aroub,Khalida
  * B9A
  * CPCS-324
  * Project Code
- * 
+ * 4th June. 2023
  */
-// Dijkstra's Algorithm 
 
 public class SingleSourceSPAlg {
+    
         Graph graph;
         Vertex source;
         boolean[] visitedVertex;

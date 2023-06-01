@@ -13,7 +13,7 @@ import graphFramework.*;
  * B9A
  * CPCS-324
  * Project Code
- * 18th may. 2023
+ * 4th June. 2023
  */
 public class AirFreightApp {
 
@@ -57,8 +57,6 @@ public class AirFreightApp {
 			TheMap.readGraphFromFile(graphFile); // Access readGraphFromFile Method in Graph Class
 
 			ShortestPathAlgorithm dijkstra = new ShortestPathAlgorithm(TheMap);
-			dijkstra.computeDijkstraAlg(TheMap); // Read Graph in Dijkstra Algorithm
-			dijkstra.printResult(); // Print path list and router length
 
 		} // End of Requirement 1
 
@@ -132,9 +130,8 @@ public class AirFreightApp {
 			}
 
 			AFRouteMap TheMap = new AFRouteMap(verticesNO, edgesNO, isDigraph); // Create An Object of Graph as TheMap
-			ShortestPathAlgorithm dijkstra = new ShortestPathAlgorithm(TheMap); // Create DijkstraAlg object to use Dijkstra algorithm
 			long startTime = System.currentTimeMillis(); // Store the time before invoke the algorithm
-			dijkstra.computeDijkstraAlg(TheMap);
+			ShortestPathAlgorithm dijkstra = new ShortestPathAlgorithm(TheMap); // Create DijkstraAlg object to use Dijkstra algorithm
 			long finishTime = System.currentTimeMillis();// Store the time after invoke the algorithm
 			// Print the running time
 			System.out.println("Run time for Dijkstra algorithm " + (finishTime - startTime) + " ms \n");

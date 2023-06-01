@@ -19,7 +19,7 @@ public class SingleSourceSPAlg {
         ArrayList <Vertex> path = new ArrayList();
         int[] distance;
                 
-  public  void dijkstra(Graph graph,Vertex source) {
+  public  void SingleSourceSPAlg(Graph graph,Vertex source) {
     int count = graph.size();
     visitedVertex = new boolean[count];
     distance = new int[count];

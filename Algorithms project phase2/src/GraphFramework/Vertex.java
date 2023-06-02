@@ -18,6 +18,7 @@ public class Vertex {
 
     public Vertex() {
         adjList = new LinkedList<>();
+        isVisited = false;
     }
 
     public String getLabel() {

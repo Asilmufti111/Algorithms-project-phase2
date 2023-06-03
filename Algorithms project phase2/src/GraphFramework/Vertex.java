@@ -4,11 +4,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 /*
- *  @authors Asil, Qamar, Aroub,Khalida
+ *  @authors Asil, Qamar, Aroub,Khalida, Huda
  * B9A
  * CPCS-324
  * Project Code
- * 4th June 2023
+ * 4th June. 2023
  */
 public class Vertex {
 
@@ -51,9 +51,9 @@ public class Vertex {
         adjList = new LinkedList<>(); //create new linkedlist for each vertex (for its edges)
     }
 
-    public void displayInfo() {
-        System.out.print(label);
-    }
+    public String displayInfo() {
+		return null;
+	}
 
 }
 

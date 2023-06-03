@@ -48,7 +48,12 @@ public class SingleSourceSPAlg {
                         //current min dist+current edge weight < distance at taget location
                         distance[Integer.parseInt(edge.getTarget().getLabel())] = distance[u] + edge.getWeight(); // Update the target location to smaller distance 
 
-                        path[Integer.parseInt(edge.getTarget().getLabel())] = path[u] + " – " + edge.getTarget().displayInfo(); // Add target to path
+                        if(path[u]!=null){
+                        
+                            path[Integer.parseInt(edge.getTarget().getLabel())] = path[u] + " – " + edge.getTarget().displayInfo();}// Add target to path
+                        
+                        else
+                             path[Integer.parseInt(edge.getTarget().getLabel())] = edge.getParent().displayInfo() + " – " + edge.getTarget().displayInfo();
 
                     }
                 }
@@ -78,15 +83,10 @@ public class SingleSourceSPAlg {
     }
 
     public void printResult(Vertex source) {
-        
-        int srclabel = Integer.parseInt(source.getLabel());
-        
-        for(Edge edge : graph.vertices.get(srclabel).getAdjList()){
-                
-        System.out.println("\nThe starting point location is " + (char) (Integer.parseInt(edge.getParent().getLabel()) + 'A')); //get source
+            
+        System.out.println("\nThe starting point location is " + (char) (Integer.parseInt(source.getLabel()) + 'A')); //get source
 
-        System.out.println("\nThe routes from location " + (char) (Integer.parseInt(edge.getParent().getLabel()) + 'A') + " to the rest of the locations are:");}
-
+        System.out.println("\nThe routes from location " + (char) (Integer.parseInt(source.getLabel()) + 'A') + " to the rest of the locations are:");
 
         // Start loop from 1 to ignore 1st Vertex
         for (int i = 1; i < graph.verticesNo; i++) {

@@ -2,11 +2,11 @@ package GraphFramework;
 
 
 /*
- *  @authors Asil, Qamar, Aroub,Khalida
+ *  @authors Asil, Qamar, Aroub,Khalida, Huda
  * B9A
  * CPCS-324
  * Project Code
- * 4th June 2023
+ * 4th June. 2023
  */
 public class Edge implements Comparable<Edge> {
 
@@ -72,7 +72,6 @@ public class Edge implements Comparable<Edge> {
     }
 
     public void displayInfo() {
-        System.out.print(weight);
 
     }
 

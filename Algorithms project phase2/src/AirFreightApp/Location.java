@@ -27,7 +27,7 @@ public class Location extends Vertex {
 
     @Override
         public String displayInfo() {
-        return ": city " + city;
+        return super.displayInfo() +": city " + city;
     }
 
 }

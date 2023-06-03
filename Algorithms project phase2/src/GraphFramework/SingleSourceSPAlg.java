@@ -38,17 +38,14 @@ public class SingleSourceSPAlg {
 
             for (Edge edge : graph.vertices.get(u).getAdjList()) { ///loop thro neighbors of this newly vistited vertex
 
+                edge.setParent(src);
+                
                 if (graph.vertices.get(Integer.parseInt(edge.getTarget().getLabel())).getIsVisited() != true && edge.getWeight() != Integer.MAX_VALUE
+                       
                         && edge.getWeight() != 0) {//only if neighbor not visited and weight>0
-                    /**
-                     * Continue only if: current distance (current minimum
-                     * distance) + current iterated edge is -> smaller than the
-                     * target distance if the target location in array distance
-                     * is set, meaning it applicable of the condition if not
-                     * then its still (maybe) max value or just bigger
-                     */
-                    if (distance[u] + edge.getWeight() < distance[Integer.parseInt(edge.getTarget().getLabel())]) {
 
+                    if (distance[u] + edge.getWeight() < distance[Integer.parseInt(edge.getTarget().getLabel())]) {
+                        //current min dist+current edge weight < distance at taget location
                         distance[Integer.parseInt(edge.getTarget().getLabel())] = distance[u] + edge.getWeight(); // Update the target location to smaller distance 
 
                         path[Integer.parseInt(edge.getTarget().getLabel())] = path[u] + " – " + edge.getTarget().displayInfo(); // Add target to path
@@ -81,18 +78,25 @@ public class SingleSourceSPAlg {
     }
 
     public void printResult(Vertex source) {
-        System.out.println("\nThe starting point location is " + (char) (Integer.parseInt(source.getLabel()) + 'A')); //get source
+        
+        int srclabel = Integer.parseInt(source.getLabel());
+        
+        for(Edge edge : graph.vertices.get(srclabel).getAdjList()){
+                
+        System.out.println("\nThe starting point location is " + (char) (Integer.parseInt(edge.getParent().getLabel()) + 'A')); //get source
 
-        System.out.println("\nThe routes from location " + (char) (Integer.parseInt(source.getLabel()) + 'A') + " to the rest of the locations are:");
+        System.out.println("\nThe routes from location " + (char) (Integer.parseInt(edge.getParent().getLabel()) + 'A') + " to the rest of the locations are:");}
+
 
         // Start loop from 1 to ignore 1st Vertex
         for (int i = 1; i < graph.verticesNo; i++) {
 
             if (distance[i] >= Integer.MIN_VALUE && distance[i] < 0 || distance[i] <= Integer.MAX_VALUE && distance[i] > 59990) {
 
-                // System.out.println("\n" + path[i] + " route length: no path"); //no path between source and target vertex
-                continue;
+                System.out.println("\n" + path[i] + " route length: no path"); //no path between source and target vertex
+
             } else {
+                
                 System.out.println("\n" + path[i] + " route length: " + distance[i]); // print path and weight
             }
         }

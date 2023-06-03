@@ -60,7 +60,7 @@ public class AirFreightApp {
         } // End of Requirement 1
 
         // --------------------- Requirement 2 ------------------ //
-        if (userInput == 2) {
+       else if (userInput == 2) {
             System.out.println("\n\t\t\t-Requirement 2 Using Make Graph function-");
             System.out.print("\nDo you want the graph directed (yes/no)? "); // Ask user if he/she want to do the
             // algorithm with direct graph

@@ -27,13 +27,11 @@ public class AFRouteMap extends Graph {
 
     }
 
-    // Create Vertex
     @Override
     public Vertex createVertex(String label) {
         return new Location(label);
     }
 
-    // Create Edge
     @Override
     public Edge createEdge(Vertex source, Vertex target, int weight) {
         return new Route(source, target, weight);

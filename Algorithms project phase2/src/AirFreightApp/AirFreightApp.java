@@ -52,10 +52,10 @@ public class AirFreightApp {
             System.out.println("\n\t\t\t-Requirement 1 Using Read From Graph function-");
 
             File graphFile = new File("graph.txt"); // Read from File
-            AFRouteMap TheMap = new AFRouteMap(); // Create An Object of Graph as TheMap
-            TheMap.readGraphFromFile(graphFile); // Access readGraphFromFile Method in Graph Class
+            AFRouteMap map = new AFRouteMap(); // Create An Object of AFRouteMap 
+            map.readGraphFromFile(graphFile); // Access readGraphFromFile Method in Graph Class
 
-            ShortestPathAlgorithm dijkstra = new ShortestPathAlgorithm(TheMap);
+            ShortestPathAlgorithm dijkstra = new ShortestPathAlgorithm(map);
 
         } // End of Requirement 1
 
@@ -77,11 +77,12 @@ public class AirFreightApp {
                 isDigraph = true;
             }
             System.out.println("Cases of Edges(m) and Vertcies(n):");
-            System.out.println("(1) n= 2000, m= 10000\n"
-                    + "(2) n= 3000, m= 15000\n"
-                    + "(3) n= 4000, m= 20000\n"
-                    + "(4) n= 5000, m= 25000\n"
-                    + "(5) n= 6000, m= 30000");
+            System.out.println("""
+                               (1) n= 2000, m= 10000
+                               (2) n= 3000, m= 15000
+                               (3) n= 4000, m= 20000
+                               (4) n= 5000, m= 25000
+                               (5) n= 6000, m= 30000""");
 
             do {
                 // ------- Read User Input for the Selected Case -------- //
@@ -91,10 +92,8 @@ public class AirFreightApp {
                 switch (userInput) {
                   
                     case 1: {
-                      //  verticesNo = 2000;
-                        //edgesNo = 10000;
-                         verticesNo = 6;
-                            edgesNo = 8;
+                       verticesNo = 2000;
+                        edgesNo = 10000;
                     }
                     break;
 
@@ -124,14 +123,19 @@ public class AirFreightApp {
                 }
             } while (userInput > 5 || userInput < 1);
 
-            AFRouteMap TheMap = new AFRouteMap(verticesNo, edgesNo, isDigraph); // Create An Object of Graph as TheMap
-            long startTime = System.currentTimeMillis(); // Store the time before invoke the algorithm
-            ShortestPathAlgorithm dijkstra = new ShortestPathAlgorithm(TheMap); // Create DijkstraAlg object to use Dijkstra algorithm
-            long finishTime = System.currentTimeMillis();// Store the time after invoke the algorithm
-            // Print the run#ing time
+            
+            AFRouteMap map = new AFRouteMap(verticesNo, edgesNo, isDigraph); // Create An Object of AFRouteMap
+            
+            long startTime = System.currentTimeMillis(); // Store start time
+            
+            ShortestPathAlgorithm dijkstra = new ShortestPathAlgorithm(map); // Create ShortestPathAlgorithm object to use Dijkstra algorithm
+            
+            long finishTime = System.currentTimeMillis();// Store finish time
+            // Print the running time
+            
             System.out.println("Run time for Dijkstra algorithm " + (finishTime - startTime) + " ms \n");
 
-        } // End of requirement 2
+        } 
         input.close();
-    } // End of Main
-} // End of Class
+    } 
+} 

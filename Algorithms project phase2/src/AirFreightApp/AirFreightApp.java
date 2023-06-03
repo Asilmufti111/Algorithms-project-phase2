@@ -7,9 +7,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import graphFramework.*;
 /*
- *  @authors Asil, Qamar, Aroub,Khalida
+ *  @authors Asil, Qamar, Aroub,Khalida, Huda
  * B9A
  * CPCS-324
  * Project Code
@@ -22,17 +21,21 @@ public class AirFreightApp {
 		Scanner input = new Scanner(System.in);
 
 		// Intilize variables
-		int verticesNO = 0; // number of vertices
-		int edgesNO = 0; // number of edges
+		int verticesNo = 0; // number of vertices
+		int edgesNo = 0; // number of edges
 		boolean isDigraph = false;
 
 		// ======================Header========================//
-		System.out.println("\t\t--------------------------------------------------------------------------\n"
-				+ "\t\t|Implement Dijkstra algorithm for the single-source shortest path problem|\n"
-				+ "\t\t--------------------------------------------------------------------------\n");
+		System.out.println("""
+                                   \t\t--------------------------------------------------------------------------
+                                   \t\t|Implement Dijkstra algorithm for the single-source shortest path problem|
+                                   \t\t--------------------------------------------------------------------------
+                                   """);
 
-		System.out.println("\t\t**********  (1) Requirement 1 Using Read_from_Graph Func. ********** \n"
-				+ "\t\t**********  (2) Requirement 2 Using Make_Graph Func.      ********** \n");
+		System.out.println("""
+                                   \t\t**********  (1) Requirement 1 Using Read_from_Graph Func. ********** 
+                                   \t\t**********  (2) Requirement 2 Using Make_Graph Func.      ********** 
+                                   """);
 
 		// ------- Read User Input for the Selected Requirement -------- //
 
@@ -52,7 +55,7 @@ public class AirFreightApp {
 		if (userInput == 1) {
 			System.out.println("\n\t\t\t-Requirement 1 Using Read From Graph function-");
 
-			File graphFile = new File("graph"); // Read from File
+			File graphFile = new File("graph.txt"); // Read from File
 			AFRouteMap TheMap = new AFRouteMap(); // Create An Object of Graph as TheMap
 			TheMap.readGraphFromFile(graphFile); // Access readGraphFromFile Method in Graph Class
 
@@ -90,50 +93,54 @@ public class AirFreightApp {
 			System.out.print("\nSelect your Test Option -> ");
 			userInput = input.nextInt(); // Option of the Case
 
-			while (userInput > 5 || userInput < 1) {
+			while (userInput > 5 || userInput < 0) {
 				System.out.println("Option not found.");
 				System.out.print("Select your Test Option -> ");
 				userInput = input.nextInt();
 			} // End of while
 
 			switch (userInput) {
+                        case 0: {
+                        
+                            verticesNo = 6;
+                        
+                            edgesNo = 8;
+                            
+                        }break;
+                        
 			case 1: {
-				verticesNO = 2000;
-				edgesNO = 10000;
+				verticesNo = 2000;
+				edgesNo = 10000;
 			}
-				;
 				break;
 
 			case 2: {
-				verticesNO = 3000;
-				edgesNO = 15000;
+				verticesNo = 3000;
+				edgesNo = 15000;
 			}
-				;
 				break;
 			case 3: {
-				verticesNO = 4000;
-				edgesNO = 20000;
+				verticesNo = 4000;
+				edgesNo = 20000;
 			}
-				;
 				break;
 			case 4: {
-				verticesNO = 5000;
-				edgesNO = 25000;
+				verticesNo = 5000;
+				edgesNo = 25000;
 			}
-				;
 				break;
 			case 5: {
-				verticesNO = 6000;
-				edgesNO = 30000;
+				verticesNo = 6000;
+				edgesNo = 30000;
 			}
 				break;
 			}
 
-			AFRouteMap TheMap = new AFRouteMap(verticesNO, edgesNO, isDigraph); // Create An Object of Graph as TheMap
+			AFRouteMap TheMap = new AFRouteMap(verticesNo, edgesNo, isDigraph); // Create An Object of Graph as TheMap
 			long startTime = System.currentTimeMillis(); // Store the time before invoke the algorithm
 			ShortestPathAlgorithm dijkstra = new ShortestPathAlgorithm(TheMap); // Create DijkstraAlg object to use Dijkstra algorithm
 			long finishTime = System.currentTimeMillis();// Store the time after invoke the algorithm
-			// Print the running time
+			// Print the run#ing time
 			System.out.println("Run time for Dijkstra algorithm " + (finishTime - startTime) + " ms \n");
 
 		} // End of requirement 2

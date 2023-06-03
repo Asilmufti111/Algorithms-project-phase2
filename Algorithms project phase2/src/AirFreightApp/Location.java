@@ -4,16 +4,19 @@ import GraphFramework.Vertex;
 
 
 /*
- *  @authors Asil, Qamar, Aroub,Khalida
+ *  @authors Asil, Qamar, Aroub,Khalida, Huda
  * B9A
  * CPCS-324
  * Project Code
- * 18th may. 2023
+ * 4th June. 2023
  */
 public class Location extends Vertex {
 
+    String city;
+    
     public Location(String label) {
         super(label);
+        this.city = label;
     }
 
     // Methods
@@ -23,8 +26,8 @@ public class Location extends Vertex {
     }
 
     @Override
-    public void displayInfo() {
-        System.out.println(": city" + super.getLabel());
+        public String displayInfo() {
+        return ": city " + city;
     }
 
 }

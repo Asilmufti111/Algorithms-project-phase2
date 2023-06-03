@@ -22,6 +22,6 @@ public class Route extends Edge {
     @Override
     public void displayInfo() {
         System.out.println("---route length: " + route);
-    } // End of Method
+    } 
 
-} // End of Class
+} 

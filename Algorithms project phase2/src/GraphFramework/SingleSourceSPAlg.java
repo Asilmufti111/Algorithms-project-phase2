@@ -1,9 +1,7 @@
 package GraphFramework;
 
-import java.util.ArrayList;
-
 /*
- *  @authors Asil, Qamar, Aroub,Khalida
+ *  @authors Asil, Qamar, Aroub,Khalida, Huda
  * B9A
  * CPCS-324
  * Project Code
@@ -16,100 +14,99 @@ public class SingleSourceSPAlg {
         Vertex source;
         boolean[] visitedVertex;
         int[] distance;
-        ArrayList <Vertex> path ;
-
+	String[] path;
                 
-  public  void computeDijkstraAlg(Graph graph,Vertex source) {
-      
-      path = new ArrayList();
-      
-      String printedPath = "loc. "+source.getLabel()+": city ";
-      
-      int routeLength = 0;
+
+	public void computeDijkstraAlg(Graph graph,Vertex source) {
+
+                this.graph = graph; 
+                int srclabel = Integer.parseInt(source.getLabel());
+            
+		// Get distance array to calculate cost & Get path array to collect path passed
+		distance = new int[graph.verticesNo]; // Hold the shortest distance from source to each vertex
+		path = new String[graph.verticesNo]; // Hold the vertices path from the source to the vertex
+
+		// Update all the vertices distance as infinity -- to set it later to minimum
+		// distance as needed
+		for (int i = 0; i < graph.verticesNo; i++) {
+                        graph.vertices.get(i).setIsVisited(false);
+			distance[i] = Integer.MAX_VALUE;
+		}
+
+		/**
+		 * Vertex[0] requirements: distance of 0 path of the 1st vertex name
+		 */
+		distance[srclabel] = 0;// Distance of source vertex from itself is always 0
+		Vertex src = graph.vertices.get(srclabel); // Get the source Vertex
+		path[srclabel] = src.displayInfo(); // Hold 1st source as override output of the path
+
+		// Loop Through the array
+		for (int i = 0; i < graph.verticesNo - 1; i++) {
+			int u = minDistance(distance); // Pick the minimum distance vertex from the set of not visited vertices
+// Pick the minimum distance vertex from the set of not visited vertices
+			graph.vertices.get(u).setIsVisited(true) ;
+                    // Iterate through all neighbors
+                    // End of the Iterator loop
+                    // Mark the picked vertex as visited
+                    for (Edge edge : graph.vertices.get(u).getAdjList()) {
+                        /**
+                         * Continue only if: 1. Vertex not visited 2. its weight is set by the
+                         * (minDistance) method 3. its weight not zero
+                         */
+                        if (graph.vertices.get(Integer.parseInt(edge.getTarget().getLabel())).getIsVisited() != true && edge.getWeight() != Integer.MAX_VALUE
+                                && edge.getWeight() != 0) {
+                            /**
+                             * Continue only if: current distance (current minimum distance) + current
+                             * iterated edge is -> smaller than the target distance if the target location
+                             * in array distance is set, meaning it applicable of the condition if not then
+                             * its still (maybe) max value or just bigger
+                             */
+                            if (distance[u] + edge.getWeight() < distance[Integer.parseInt(edge.getTarget().getLabel())]) {
+                               
+                                distance[Integer.parseInt(edge.getTarget().getLabel())] = distance[u] + edge.getWeight(); // Update the target location to the
+                                
+                                path[Integer.parseInt(edge.getTarget().getLabel())] = path[u] + " – " + edge.getTarget().displayInfo(); // Add the target
+                                
+                            } 
+                        } 
+                    }
+		} 
+	printResult();} 
+
+	/**
+	 * 
+	 * @param smallestDistance
+	 * @return
+	 */
+	public int minDistance(int[] smallestDistance) {
+		int u = 0;
+		int minDistance = Integer.MAX_VALUE;
+
+		// Loop through all vertices
+		for (int i = 0; i < graph.verticesNo; i++) {
+			// The vertex must be not visited and its less than the minimum distance
+			if (graph.vertices.get(i).getIsVisited() != true && smallestDistance[i] < minDistance) {
+				minDistance = smallestDistance[i]; // The new minimum distance
+				u = i; 
+			}
+		}
+		return u;
+	}
+
+	public void printResult() {
+		// Start loop from 1 to ignore 1st Vertex
+                
+		for (int i = 1; i < graph.verticesNo; i++) {
+                    if(distance[i]!=Integer.MAX_VALUE){
+			System.out.println("\n" + path[i] + " route length: " + distance[i]);}
+                    
+                    else System.out.println("\n" + path[i] + " route length: no path");// Print linked path and final cost
+												// sequentially
+		} 
+	} 
+
+} 
+
+
+
     
-      int count = graph.verticesNo;
-    
-    visitedVertex = new boolean[count];
-    
-    distance = new int[count];
-    for (int i = 0; i < count; i++) {
-      
-        visitedVertex[i] = false;
-      
-        distance[i] = Integer.MAX_VALUE;
-    } // Initialize all verticies to infinity and not visited
-
-    distance[Integer.parseInt(source.getLabel())] = 0; // Initialize distance from first vertices (source) to itself to 0
-   
-    for (int i = 0; i < count; i++) {
-      // Update the distance between neighbouring vertex and source vertex
-      
-      int u = findMinDistance(distance, visitedVertex);
-      
-      visitedVertex[u] = true;
-      // Update all the neighbouring vertex distances
-      
-      for (int v = 0; v < count; v++) { 
-          
-          for(int q =0; q<graph.vertices.get(v).getAdjList().size(); q++ ){// moves through every element in adjacency list
-              
-              int dis = graph.vertices.get(v).getAdjList().get(q).getWeight(); // get weight of current edge in adjancency matrix
-                 
-              if(dis>0)
-              
-                  if (!visitedVertex[v] && (distance[u] + dis < distance[v])) { // if distance ot be added is less than distance traveled so far
-                   
-                      distance[v] = distance[u] + dis; // update distance traveled so far
-                                      
-                      path.add(graph.vertices.get(v).getAdjList().get(q).getTarget());                   
-                   
-                      printedPath+=graph.vertices.get(v).getAdjList().get(q).getWeight() +"-loc."+graph.vertices.get(v).getAdjList().get(q).getTarget().getLabel()+": city";                   
-                   
-                      routeLength+=graph.vertices.get(v).getAdjList().get(q).getWeight();                   
-                   
-                      System.out.println(printedPath+"---route length: "+ routeLength);
-              }
-        
-        }
-      }
-    }
-    for (int i = 0; i < distance.length; i++) { // formatted print statement
-      System.out.println(String.format("Distance from %s to location %s is %s", source.getLabel(), i, distance[i]));
-    }
-
-  }
-
-    public ArrayList<Vertex> getPath() {
-        return path;
-    }
-
-  // Finding the minimum distance
-  private static int findMinDistance(int[] distance, boolean[] visitedVertex) {
-    
-      int minDistance = Integer.MAX_VALUE; // initialize to positive infinity
-    
-      int minDistanceVertex = -1; // index of vertex with minimum edge 
-    
-      for (int i = 0; i < distance.length; i++) {
-      
-          if (!visitedVertex[i] && distance[i] < minDistance) { // check that vertex is not visited and distance is less than min distance
-        
-              minDistance = distance[i]; // reassign min distance
-        
-              minDistanceVertex = i; //  assign index of vertex with min distance so far
-      }
-    }
-    return minDistanceVertex;
-  }
-
-
-    public boolean[] getVisitedVertex() {// will be used to identify which vertex's are included in minimum spanning tree
-        return visitedVertex;
-    }
-
-    public int[] getDistance() { // shows cumulative distance 
-        return distance;
-    }
-  
-  
-}

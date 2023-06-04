@@ -130,7 +130,7 @@ public class AirFreightApp {
             
             ShortestPathAlgorithm dijkstra = new ShortestPathAlgorithm(map); // Create ShortestPathAlgorithm object to use Dijkstra algorithm
             
-            long finishTime = System.currentTimeMillis();// Store finish time
+            long finishTime = System.currentTimeMillis();// Store end time
             // Print the running time
             
             System.out.println("Run time for Dijkstra algorithm " + (finishTime - startTime) + " ms \n");

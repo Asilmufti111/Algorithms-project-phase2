@@ -93,11 +93,11 @@ public class SingleSourceSPAlg {
 
             if (distance[i] >= Integer.MIN_VALUE && distance[i] < 0 || distance[i] <= Integer.MAX_VALUE && distance[i] > 59990) {
 
-                System.out.println("\n" + path[i] + " route length: no path"); //no path between source and target vertex
+                System.out.println("\n" + path[i] + " ---route length: no path"); //no path between source and target vertex
 
             } else {
                 
-                System.out.println("\n" + path[i] + " route length: " + distance[i]); // print path and weight
+                System.out.println("\n" + path[i] + " ---route length: " + distance[i]); // print path and weight
             }
         }
     }

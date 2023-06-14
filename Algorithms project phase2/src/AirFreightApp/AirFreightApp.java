@@ -48,12 +48,11 @@ public class AirFreightApp {
         }
 
         // ------------------------ Requirement 1 ------------------------ //
-        if (userInput == 1) {
+       if (userInput == 1) {
             System.out.println("\n\t\t\t-Requirement 1 Using Read From Graph function-");
 
             File graphFile = new File("graph.txt"); // Read from File
-            AFRouteMap map = new AFRouteMap(); // Create An Object of AFRouteMap 
-            map.readGraphFromFile(graphFile); // Access readGraphFromFile Method in Graph Class
+            AFRouteMap map = new AFRouteMap(graphFile); // Create An Object of AFRouteMap and give it the graph file to read it  
 
             ShortestPathAlgorithm dijkstra = new ShortestPathAlgorithm(map);
 

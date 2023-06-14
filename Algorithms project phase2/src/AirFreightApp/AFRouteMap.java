@@ -4,7 +4,6 @@ import GraphFramework.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-
 /*
  *  @authors Asil, Qamar, Aroub,Khalida, Huda
  * B9A
@@ -12,6 +11,7 @@ import java.io.FileNotFoundException;
  * Project Code
  * 4th June. 2023
  */
+
 public class AFRouteMap extends Graph {
 
     AFRouteMap(int verticesNo, int edgesNo, boolean b) {
@@ -19,12 +19,7 @@ public class AFRouteMap extends Graph {
     }
 
     AFRouteMap(File graphfile) throws FileNotFoundException {
-
         super(graphfile);
-    }
-
-    AFRouteMap() {
-
     }
 
     @Override
@@ -35,10 +30,6 @@ public class AFRouteMap extends Graph {
     @Override
     public Edge createEdge(Vertex source, Vertex target, int weight) {
         return new Route(source, target, weight);
-    }
-
-    public void displayInfo() {
-        displayInfo();
     }
 
 }

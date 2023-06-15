@@ -22,13 +22,13 @@ public class AFRouteMap extends Graph {
         super(graphfile);
     }
 
-    @Override
-    public Vertex createVertex(String label) {
+   @Override
+    public Location createVertex(String label) {
         return new Location(label);
     }
 
     @Override
-    public Edge createEdge(Vertex source, Vertex target, int weight) {
+    public Route createEdge(Vertex source, Vertex target, int weight) {
         return new Route(source, target, weight);
     }
 
